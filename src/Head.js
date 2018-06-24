@@ -219,6 +219,7 @@ class Head extends Component {
             currentAnswer: "0",
             defaultOperation: "+",
             currentOperation: "",
+            isEqualSet: false,
         };
     }
 
@@ -299,6 +300,7 @@ class Head extends Component {
                         first: "0",
                         currentAnswer:  (parseFloat(this.state.currentAnswer) + parseFloat(this.state.first)).toString(),
                         currentOperation: "",
+                        isEqualSet: true,
                     }
                 );
             } else
@@ -318,6 +320,7 @@ class Head extends Component {
             currentAnswer: solution,
             first: solution,
             currentOperation: "",
+            isEqualSet: false,
         });
     }
 
@@ -325,7 +328,7 @@ class Head extends Component {
     render = () => {
         return (
             <div className="head">
-              {this.state.currentOperation === '' ? this.state.first : this.state.currentAnswer}
+              {this.state.isEqualSet ? this.state.currentAnswer : (this.state.currentOperation === '' ? this.state.first : this.state.currentAnswer)}
                 <br />
                 <br />
                 <div className="keypad-row">
