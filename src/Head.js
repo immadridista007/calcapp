@@ -269,6 +269,8 @@ class Head extends Component {
                 this.setState(
                     {
                         currentOperation: i,
+                        currentAnswer: (parseFloat(this.state.currentAnswer) + parseFloat(this.state.first)).toString(),
+                        first: "0",
                     }
                 );
             } else
@@ -293,7 +295,7 @@ class Head extends Component {
         } else
         if (i === '=') {
             if (this.state.currentOperation === '+') {
-                console.log("here");
+                console.log("Add");
                 console.log ((parseFloat(this.state.currentAnswer) + parseFloat(this.state.first)).toString());
                 this.setState(
                     {
@@ -305,7 +307,16 @@ class Head extends Component {
                 );
             } else
             if (this.state.currentOperation === '-') {
-                this.subtract();
+                console.log("Subtraction");
+                console.log((parseFloat(this.state.currentAnswer) - parseFloat(this.state.first)).toString());
+                this.setState(
+                    {
+                        first: "0",
+                        currentAnswer: (parseFloat(this.state.currentAnswer) - parseFloat(this.state.first)).toString(),
+                        currentOperation: "",
+                        isEqualSet: true,
+                    }
+                );
             }
         }
         //console.log(this.state.first);
@@ -328,7 +339,12 @@ class Head extends Component {
     render = () => {
         return (
             <div className="head">
-              {this.state.isEqualSet ? this.state.currentAnswer : (this.state.currentOperation === '' ? this.state.first : this.state.currentAnswer)}
+              {/*this.state.isEqualSet ? this.state.currentAnswer : (this.state.currentOperation === '' ? this.state.first : this.state.currentAnswer)*/}
+              Current Answer: {this.state.currentAnswer}
+                <br />
+              First Operand: {this.state.first}
+              <br/>
+              {this.state.currentOperation === '' ? this.state.first : this.state.currentAnswer}
                 <br />
                 <br />
                 <div className="keypad-row">
